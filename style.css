@@ -1,68 +1,76 @@
-/* --- ОБЩИЕ СТИЛИ --- */
+/* Сброс стилей и базовые настройки */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    user-select: none;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace; /* Имитация пиксельного шрифта */
 }
 
-body, html {
-    width: 100%;
-    height: 100%;
+body {
     background-color: #000;
-    overflow: hidden;
-    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    overflow: hidden; /* Чтобы не было полос прокрутки */
+    height: 100vh;
+    width: 100vw;
 }
 
-/* --- ЭКРАН 1: ОКОШКО --- */
-#window-container {
-    position: relative;
+/* Экраны */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-    z-index: 50; /* Окна должны быть поверх всего */
+    overflow: hidden;
 }
 
-.popup {
+.screen.active {
+    display: flex;
+}
+
+/* Стили окна */
+.window {
     position: absolute;
-    background-color: #000;
+    width: 320px;
+    background-color: #111;
     border: 2px solid #fff;
     box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    width: 320px;
-    text-align: center;
     color: #fff;
 }
 
-.popup-header {
+.window-header {
     display: flex;
-    gap: 6px;
-    margin-bottom: 25px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    gap: 5px;
+    padding: 5px 10px;
+    border-bottom: 2px solid #fff;
+    background-color: #222;
 }
 
 .dot {
     width: 8px;
     height: 8px;
-    border: 1px solid #fff;
-    background: transparent;
+    background-color: #fff;
+    border-radius: 50%;
 }
 
-.popup-text {
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 30px;
+.window-body {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.window-text {
+    font-size: 18px;
+    margin-bottom: 25px;
     font-weight: bold;
 }
 
-.btn-container {
+.buttons {
     display: flex;
     justify-content: space-around;
-    padding: 0 10px;
+    gap: 15px;
 }
 
 .btn {
@@ -71,131 +79,96 @@ body, html {
     color: #fff;
     padding: 8px 20px;
     font-size: 16px;
-    font-family: inherit;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.1s;
+    transition: all 0.2s;
+    font-family: inherit;
 }
 
 .btn:hover {
-    background: #fff;
+    background-color: #fff;
     color: #000;
 }
 
-/* --- ЭКРАН 2: LOVE YOU --- */
+/* Стили для экрана LOVE YOU */
 #love-screen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    background-color: #050005;
-    overflow: hidden;
+    background-color: #000;
     z-index: 10;
 }
 
-/* Контейнер для колонок */
-.columns-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
+#columns-container {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.4; 
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    opacity: 0.7;
+    z-index: 1;
 }
 
-/* Колонки */
 .column {
-    flex: 1; 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    font-size: 16px;
+    color: #ff1493; /* Ярко-розовый цвет */
+    line-height: 1.2;
     white-space: nowrap;
-    height: 200%; 
-    position: relative;
 }
 
-.column-text {
-    color: #ff1493;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 1.5;
-    text-shadow: 0 0 5px #ff1493;
-    flex-shrink: 0; 
+.column span {
+    display: block;
 }
 
-/* Анимации (разная скорость) */
-.col-1 { animation: scrollDown 4s linear infinite; }
-.col-2 { animation: scrollDown 7s linear infinite; }
-.col-3 { animation: scrollDown 3s linear infinite; }
-.col-4 { animation: scrollDown 8s linear infinite; }
-.col-5 { animation: scrollDown 5s linear infinite; }
-
-@keyframes scrollDown {
+/* Анимации колонок */
+@keyframes scroll-down {
     0% { transform: translateY(-50%); }
     100% { transform: translateY(0%); }
 }
 
+@keyframes scroll-up {
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(-50%); }
+}
+
+.animate-down {
+    animation: scroll-down linear infinite;
+}
+
+.animate-up {
+    animation: scroll-up linear infinite;
+}
+
 /* Центральный контент */
 .center-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 20;
-    text-align: center;
-}
-
-.main-love-text {
-    color: #fff;
-    font-size: 60px;
-    font-weight: bold;
-    letter-spacing: 5px;
-    margin-bottom: 60px; 
-    text-shadow: 0 0 15px #fff, 0 0 30px #ff1493;
-}
-
-.heart-container {
-    width: 80px;
-    height: 80px;
-    position: relative;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px #ff1493);
+    pointer-events: none; /* Чтобы не мешало кликам, если понадобятся */
+}
+
+.love-text {
+    font-size: 48px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
 }
 
 .heart {
-    width: 80px;
-    height: 80px;
-    background-color: #fff;
-    position: relative;
-    transform: rotate(-45deg);
+    font-size: 120px;
+    color: #fff;
+    text-shadow: 0 0 30px #ff1493, 0 0 60px #ff1493;
+    animation: pulse 1.5s infinite ease-in-out;
 }
 
-.heart::before,
-.heart::after {
-    content: '';
-    width: 80px;
-    height: 80px;
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-}
-
-.heart::before {
-    top: -40px;
-    left: 0;
-}
-
-.heart::after {
-    top: 0;
-    left: 40px;
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
