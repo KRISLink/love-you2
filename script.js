@@ -1,6 +1,3 @@
-window.onerror = function(msg, url, line) {
-    alert("ОШИБКА: " + msg + "\nСтрока: " + line);
-};
 // --- ЛОГИКА ДЛЯ СТАРТОВОГО ЭКРАНА ---
 const windowContainer = document.getElementById('window-container');
 const loveScreen = document.getElementById('love-screen');
@@ -55,14 +52,19 @@ createPopup();
 function generateColumns() {
     const container = document.getElementById('columns-container');
     container.innerHTML = '';
+    
+    // Хардкодим 8 колонок, чтобы наверняка
     const numCols = 8; 
 
-    // Создаем одну очень длинную строку с текстом
+    // Создаем одну очень длинную строку с текстом (30 повторов)
     let longText = '';
     for (let k = 0; k < 30; k++) {
-        longText += 'YOULOVEYOU LOVEYOULOVE';
+        longText += 'YOULOVEYOU
+LOVEYOULOVE
+';
     }
 
+    // Теперь создаем колонки
     for (let i = 0; i < numCols; i++) {
         const col = document.createElement('div');
         col.className = 'column';
@@ -74,7 +76,7 @@ function generateColumns() {
         const textDiv = document.createElement('div');
         textDiv.className = 'column-text';
         
-        // Вставляем текст. Важно: дублируем его, чтобы анимация шла бесконечно
+        // Вставляем текст. Дублируем его для бесконечности
         textDiv.innerHTML = longText + longText;
 
         col.appendChild(textDiv);
