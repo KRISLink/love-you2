@@ -10,61 +10,61 @@ document.addEventListener('DOMContentLoaded', () => {
         const clone = template.content.cloneNode(true);
         const windowDiv = clone.querySelector('.window');
         
-        // Генерируем случайное смещение от центра (чтобы окна появлялись в разных местах)
-        // Например, от -150 до +150 пикселей по X и Y
-        const offsetX = (Math.random() - 0.5) * 300;
-        const offsetY = (Math.random() - 0.5) * 200;
+        // Проверяем, есть ли уже окна на экране
+        const isFirstWindow = windowsContainer.children.length === 0;
+        
+        let offsetX = 0;
+        let offsetY = 0;
 
-        // Позиционируем окно. Используем absolute, чтобы они накладывались друг на друга
-        windowDiv.style.left = `calc(50% + ${offsetX}px - 160px)`; // 160 - половина ширины окна
-        windowDiv.style.top = `calc(50% + ${offsetY}px - 100px)`;  // 100 - примерная половина высоты
+        // Если это не первое окно, добавляем случайное смещение
+        if (!isFirstWindow) {
+            offsetX = (Math.random() - 0.5) * 300;
+            offsetY = (Math.random() - 0.5) * 200;
+        }
 
-        // Добавляем обработчики событий для кнопок
+        // Позиционируем окно. Используем calc для точного центрирования + смещение
+        windowDiv.style.left = `calc(50% + ${offsetX}px - 160px)`; 
+        windowDiv.style.top = `calc(50% + ${offsetY}px - 100px)`;  
+
         const yesBtn = windowDiv.querySelector('.yes-btn');
         const noBtn = windowDiv.querySelector('.no-btn');
 
-        // Обработка "Yes" - переход на экран любви
+        // Обработка "Yes"
         yesBtn.addEventListener('click', () => {
             questionScreen.classList.remove('active');
             loveScreen.classList.add('active');
             startLoveAnimation();
         });
 
-        // Обработка "No" - создание нового окна
+        // Обработка "No"
         noBtn.addEventListener('click', () => {
-            createWindow(); // Создаем еще одно окно
-            // Можно добавить эффект, чтобы старое окно исчезло, или оставить их накапливаться
-            // Если хочешь, чтобы старые исчезали, раскомментируй строку ниже:
-            // windowDiv.remove(); 
+            createWindow(); 
         });
 
         windowsContainer.appendChild(windowDiv);
     }
 
-    // Запуск первого окна
+    // Запуск первого окна (строго по центру)
     createWindow();
 
-    // Функция для создания колонок с текстом и их анимации
+    // Функция для создания колонок с текстом
     function startLoveAnimation() {
-        if (columnsContainer.children.length > 0) return; // Защита от повторного запуска
+        if (columnsContainer.children.length > 0) return;
 
-        const numColumns = 12; // Количество колонок
+        const numColumns = 12; 
         const text = 'LOVE YOU ';
 
         for (let i = 0; i < numColumns; i++) {
             const column = document.createElement('div');
             column.classList.add('column');
 
-            // Заполняем колонку текстом (много раз, чтобы хватило на скролл)
             let content = '';
             for (let j = 0; j < 50; j++) {
                 content += `<span>${text}</span>`;
             }
             column.innerHTML = content;
 
-            // Определяем направление и скорость для каждой колонки
-            // Четные колонки едут вниз, нечетные - вверх
-            const duration = 10 + Math.random() * 15; // От 10 до 25 секунд (разная скорость)
+            const duration = 10 + Math.random() * 15; 
             
             if (i % 2 === 0) {
                 column.classList.add('animate-down');
