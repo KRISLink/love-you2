@@ -102,11 +102,12 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.4; 
+    opacity: 0.6; 
     overflow: hidden;
+    border: 2px solid green; /* ДИАГНОСТИКА: зеленая рамка всего контейнера */
 }
 
-/* Колонки теперь будут растягиваться на всю ширину экрана */
+/* Колонки */
 .column {
     flex: 1;
     display: flex;
@@ -114,22 +115,22 @@ body, html {
     align-items: center;
     justify-content: flex-start;
     white-space: nowrap;
-    /* Важно: высота должна быть больше экрана для анимации */
-    height: 200%; 
+    height: 200%; /* Высота больше экрана */
     position: relative;
+    border: 1px solid red; /* ДИАГНОСТИКА: красная рамка каждой колонки */
 }
 
 .column-text {
-    color: #ff1493; /* Розовый цвет */
+    color: #ff1493;
     font-size: 24px;
     font-weight: bold;
     line-height: 1.5;
     text-shadow: 0 0 5px #ff1493;
-    /* Текст не должен сжиматься */
     flex-shrink: 0; 
+    border: 1px solid blue; /* ДИАГНОСТИКА: синяя рамка текста */
 }
 
-/* Анимации движения вниз (разная скорость) */
+/* Анимации */
 .col-1 { animation: scrollDown 4s linear infinite; }
 .col-2 { animation: scrollDown 7s linear infinite; }
 .col-3 { animation: scrollDown 3s linear infinite; }
@@ -163,7 +164,6 @@ body, html {
     text-shadow: 0 0 15px #fff, 0 0 30px #ff1493;
 }
 
-/* Контейнер для сердечка */
 .heart-container {
     width: 80px;
     height: 80px;
@@ -174,7 +174,6 @@ body, html {
     filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px #ff1493);
 }
 
-/* Само сердечко */
 .heart {
     width: 80px;
     height: 80px;
