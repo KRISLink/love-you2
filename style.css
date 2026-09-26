@@ -103,15 +103,20 @@ body, html {
     top: 0;
     left: 0;
     opacity: 0.4; 
+    overflow: hidden;
 }
 
+/* Колонки теперь будут растягиваться на всю ширину экрана */
 .column {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     white-space: nowrap;
-    height: 200%; /* Важно для бесконечной анимации */
+    /* Важно: высота должна быть больше экрана для анимации */
+    height: 200%; 
+    position: relative;
 }
 
 .column-text {
@@ -120,9 +125,11 @@ body, html {
     font-weight: bold;
     line-height: 1.5;
     text-shadow: 0 0 5px #ff1493;
+    /* Текст не должен сжиматься */
+    flex-shrink: 0; 
 }
 
-/* Разные анимации для колонок */
+/* Анимации движения вниз (разная скорость) */
 .col-1 { animation: scrollDown 4s linear infinite; }
 .col-2 { animation: scrollDown 7s linear infinite; }
 .col-3 { animation: scrollDown 3s linear infinite; }
@@ -152,11 +159,11 @@ body, html {
     font-size: 60px;
     font-weight: bold;
     letter-spacing: 5px;
-    margin-bottom: 60px; /* Отступ для сердечка */
+    margin-bottom: 60px; 
     text-shadow: 0 0 15px #fff, 0 0 30px #ff1493;
 }
 
-/* Контейнер для сердечка (отвечает за общее свечение) */
+/* Контейнер для сердечка */
 .heart-container {
     width: 80px;
     height: 80px;
