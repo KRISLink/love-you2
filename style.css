@@ -22,6 +22,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 50; /* Окна должны быть поверх всего */
 }
 
 .popup {
@@ -102,22 +103,20 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.6; 
+    opacity: 0.4; 
     overflow: hidden;
-    border: 2px solid green; /* ДИАГНОСТИКА: зеленая рамка всего контейнера */
 }
 
 /* Колонки */
 .column {
-    flex: 1;
+    flex: 1; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     white-space: nowrap;
-    height: 200%; /* Высота больше экрана */
+    height: 200%; 
     position: relative;
-    border: 1px solid red; /* ДИАГНОСТИКА: красная рамка каждой колонки */
 }
 
 .column-text {
@@ -127,10 +126,9 @@ body, html {
     line-height: 1.5;
     text-shadow: 0 0 5px #ff1493;
     flex-shrink: 0; 
-    border: 1px solid blue; /* ДИАГНОСТИКА: синяя рамка текста */
 }
 
-/* Анимации */
+/* Анимации (разная скорость) */
 .col-1 { animation: scrollDown 4s linear infinite; }
 .col-2 { animation: scrollDown 7s linear infinite; }
 .col-3 { animation: scrollDown 3s linear infinite; }
