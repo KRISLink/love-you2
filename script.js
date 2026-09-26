@@ -54,9 +54,9 @@ function generateColumns() {
     container.innerHTML = '';
     const numCols = 8; 
 
-    // Генерируем длинный текст для бесконечной анимации
+    // Создаем одну очень длинную строку с текстом
     let longText = '';
-    for (let k = 0; k < 20; k++) {
+    for (let k = 0; k < 30; k++) {
         longText += 'YOULOVEYOU LOVEYOULOVE';
     }
 
@@ -64,13 +64,14 @@ function generateColumns() {
         const col = document.createElement('div');
         col.className = 'column';
         
-        const animClass = `col-${(i % 5) + 1}`;
+        // Чередуем классы скорости: col-1, col-2, col-3, col-4, col-5, col-1...
+        const animClass = 'col-' + ((i % 5) + 1);
         col.classList.add(animClass);
 
         const textDiv = document.createElement('div');
         textDiv.className = 'column-text';
         
-        // Дублируем текст для создания эффекта бесконечности
+        // Вставляем текст. Важно: дублируем его, чтобы анимация шла бесконечно
         textDiv.innerHTML = longText + longText;
 
         col.appendChild(textDiv);
