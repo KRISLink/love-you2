@@ -1,3 +1,6 @@
+window.onerror = function(msg, url, line) {
+    alert("ОШИБКА: " + msg + "\nСтрока: " + line);
+};
 // --- ЛОГИКА ДЛЯ СТАРТОВОГО ЭКРАНА ---
 const windowContainer = document.getElementById('window-container');
 const loveScreen = document.getElementById('love-screen');
