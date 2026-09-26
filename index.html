@@ -4,31 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Do you love me?</title>
-    <!-- Подключаем внешний файл стилей -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Экран 1: Стартовое окно -->
-    <div id="window-container">
-        <!-- Окна будут добавляться сюда через JS -->
+    <!-- Экран с вопросом -->
+    <div id="question-screen" class="screen active">
+        <div id="windows-container"></div>
     </div>
 
-    <!-- Экран 2: Love You -->
-    <div id="love-screen">
-        <div class="columns-container" id="columns-container">
-            <!-- Колонки с текстом будут сгенерированы через JS -->
-        </div>
-        
+    <!-- Экран с признанием -->
+    <div id="love-screen" class="screen">
+        <div id="columns-container"></div>
         <div class="center-content">
-            <div class="main-love-text">LOVE YOU</div>
-            <div class="heart-container">
-                <div class="heart"></div>
+            <div class="love-text">LOVE YOU</div>
+            <div class="heart">❤</div>
+        </div>
+    </div>
+
+    <!-- Шаблон окна (скрыт по умолчанию) -->
+    <template id="window-template">
+        <div class="window">
+            <div class="window-header">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="window-body">
+                <p class="window-text">Do you love me?</p>
+                <div class="buttons">
+                    <button class="btn yes-btn">Yes</button>
+                    <button class="btn no-btn">No</button>
+                </div>
             </div>
         </div>
-    </div>
+    </template>
 
-    <!-- Подключаем внешний файл JavaScript (в самом конце!) -->
     <script src="script.js"></script>
 </body>
 </html>
