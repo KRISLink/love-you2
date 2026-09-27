@@ -160,7 +160,7 @@ body {
     letter-spacing: 4px;
 }
 
-/* Контейнер для сердечка */
+/* Контейнер для сердечка — оставляем только центрирование */
 .heart-container {
     width: 80px;
     height: 80px;
@@ -168,18 +168,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Пункт 2: Убираем размытие у контейнера, чтобы внутренние части не светились отдельно */
-    box-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493;
+    /* убрали box-shadow, чтобы свечение шло от формы сердца */
 }
 
-/* Само сердечко (белый квадрат + два круга) */
+/* Само сердечко */
 .heart {
     width: 80px;
     height: 80px;
     background-color: #fff;
     position: relative;
     transform: rotate(-45deg);
-    /* Убрали box-shadow отсюда, чтобы не было внутренних теней */
+    /* Свечение в тон тексту LOVE YOU */
+    filter: drop-shadow(0 0 20px #ff1493) drop-shadow(0 0 40px #ff1493);
+    /* Медленное биение как у настоящего сердца */
+    animation: pulse 1.2s ease-in-out infinite;
+    transform-origin: center center;
 }
 
 .heart::before,
@@ -190,7 +193,6 @@ body {
     background-color: #fff;
     border-radius: 50%;
     position: absolute;
-    /* Убрали box-shadow отсюда тоже */
 }
 
 .heart::before {
@@ -203,8 +205,12 @@ body {
     left: 40px;
 }
 
+/* Пульс: лёгкое сжатие + лёгкое изменение яркости свечения */
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
+    0%   { transform: rotate(-45deg) scale(1); }
+    15%  { transform: rotate(-45deg) scale(1.1); }
+    30%  { transform: rotate(-45deg) scale(1); }
+    45%  { transform: rotate(-45deg) scale(1.07); }
+    60%  { transform: rotate(-45deg) scale(1); }
+    100% { transform: rotate(-45deg) scale(1); }
+    }
