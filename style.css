@@ -112,7 +112,7 @@ body {
     display: flex;
     flex-direction: column;
     font-size: 16px;
-    color: #ff1493;
+    color: #B00000;
     line-height: 1.2;
     white-space: nowrap;
 }
@@ -155,7 +155,7 @@ body {
     font-size: 48px;
     font-weight: bold;
     color: #fff;
-    text-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493;
+    text-shadow: 0 0 20px #8B0000, 0 0 40px #8B0000;
     margin-bottom: 60px;
     letter-spacing: 4px;
 }
@@ -179,7 +179,7 @@ body {
     position: relative;
     transform: rotate(-45deg);
     /* Свечение в тон тексту LOVE YOU */
-    filter: drop-shadow(0 0 20px #ff1493) drop-shadow(0 0 40px #ff1493);
+    filter: drop-shadow(0 0 20px #8B0000) drop-shadow(0 0 40px #8B0000);
     /* Медленное биение как у настоящего сердца */
     animation: pulse 1.2s ease-in-out infinite;
     transform-origin: center center;
