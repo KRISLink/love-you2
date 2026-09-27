@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const windowsContainer = document.getElementById('windows-container');
     const template = document.getElementById('window-template');
     const columnsContainer = document.getElementById('columns-container');
+    const music = document.getElementById('bg-music');
 
     // Функция для создания и добавления нового окна
     function createWindow() {
@@ -34,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
             questionScreen.classList.remove('active');
             loveScreen.classList.add('active');
             startLoveAnimation();
+            music.volume = 0.5;
+            music.play().catch(err => console.log('Ошибка воспроизведения:', err));
         });
 
         // Обработка "No"
