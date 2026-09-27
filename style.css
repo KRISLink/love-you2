@@ -169,7 +169,7 @@ body {
     justify-content: center;
     align-items: center;
     /* Пункт 2: Убираем размытие у контейнера, чтобы внутренние части не светились отдельно */
-    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px #ff1493);
+    box-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493;
 }
 
 /* Само сердечко (белый квадрат + два круга) */
